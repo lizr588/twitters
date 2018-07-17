@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @tweeter.message.html_safe %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= link_to @tweeter.user.username, show_user_path(id: @tweeter.user.id) %>
+</p>
+
+<%= link_to 'Edit', edit_tweeter_path(@tweeter) %> |
+<%= link_to 'Back', tweeters_path %>

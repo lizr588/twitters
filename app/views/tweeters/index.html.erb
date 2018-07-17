@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12"></div>
+<h1>Tweeters</h1>
+  </div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweeters.each do |tweeter| %>
+      <tr>
+        <td><%= tweeter.message.html_safe %></td>
+        <td><%= link_to tweeter.user.username, show_user_path(id: tweeter.user.id) %></td>
+        <td><%= link_to 'Show', tweeter %></td>
+        <td><%= link_to 'Edit', edit_tweeter_path(tweeter) %></td>
+        <td><%= link_to 'Destroy', tweeter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tweeter', new_tweeter_path %>

@@ -1,0 +1,26 @@
+
+<div class="container">
+
+    <div class="row">
+      <div class="col-md-12"></div>
+      <h1>@<%= current_user.username %>'s Twitter Feed</h1>
+    </div>
+
+  <p>Here is what your friends are saying:</p>
+
+  <% @following_tweeters.each do |tweet| %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading"><p>@<%= link_to tweet.user.username %>  <% if tweet.user.avatar.blank? == false %>
+        <%= image_tag tweet.user.avatar.url, size:25, class: "user-pic-nav" %></p>
+      <% end %></div>
+      <div class="panel-body"><p><%= tweet.message.html_safe %></p></div>
+
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+  <% end %>
+</div>
