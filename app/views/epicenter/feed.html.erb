@@ -1,26 +1,38 @@
-
 <div class="container">
+  <div class="row">
+    <div class="col-md-12"></div>
 
-    <div class="row">
-      <div class="col-md-12"></div>
-      <h1>@<%= current_user.username %>'s Twitter Feed</h1>
+        <h1>@<%= current_user.username %>'s Twitter Feed</h1>
+        <p>Here is what your friends are saying:</p>
+      </div>
+
+    <div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+      <p><%= current_user.username %>
+      </div>
+      </div>
     </div>
 
-  <p>Here is what your friends are saying:</p>
+<div class="col-md-8">
+  <div class="panel panel-default">
+  <% @following_tweeters.reverse.each do |tweet| %>
 
-  <% @following_tweeters.each do |tweet| %>
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading"><p>@<%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %>  <% if tweet.user.avatar.blank? == false %>
-        <%= image_tag tweet.user.avatar.url, size:25, class: "user-pic-nav" %> <% t = tweet.created_at %><%= time_ago_in_words(tweet.created_at) %> ago</p>
-      <% end %></div>
-      <div class="panel-body"><p><%= tweet.message.html_safe %></p></div>
-
-    </div>
+  <div class="panel-heading">
+  <p>
+    <% if tweet.user.avatar.blank? == false %>
+    <%= image_tag tweet.user.avatar.url, size:50, class: "user-pic-nav" %>
+    <%=tweet.user.name %>
+    <% end %> @
+    <%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %>  • <%= time_ago_in_words(tweet.created_at) if Time.now - tweet.created_at < 86400 %>
+    <%= tweet.created_at.strftime('%b%e') if Time.now - tweet.created_at > 86400 %>
+  </p>
   </div>
-  <div class="col-md-2"></div>
+  <div class="panel-body">
+  <p><%= tweet.message.html_safe %></p>
 </div>
-  <% end %>
+<% end %>
 </div>
+  </div>
+  </div>
