@@ -1,10 +1,24 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12"></div>
+
 <h1>@<%= @user.username %>'s Profile & Tweets</h1>
+  </div>
 
-<p><%= @user.name %></p>
-<p><%= @user.location %></p>
-<p><%= @user.bio %></p>
+  <div class="row">
+    <div class="col-sm-6"></div>
+      <div class="panel panel-default">
 
-<p>
+        <div class="panel-heading">
+<div><%= @user.name %></div>
+<div><%= @user.location %></div>
+<div><%= @user.bio %></div>
+    </tr>
+</div>
+
+  <div class="panel-body">
+
   <% if current_user.following.include?(@user.id) %>
     <%= link_to "Unfollow", unfollow_path(id: @user.id), class: "btn btn-danger" %>
   <% else %>
@@ -12,11 +26,21 @@
       <%= link_to "Follow", now_following_path(id: @user.id), class: "btn btn-primary" %>
     <% end %>
   <% end %>
-</p>
+  </div>
+
 
 <% @user.tweeters.each do |tweet| %>
+  <div class="row">
+    <div class="col-sm-6"></div>
+      <div class="panel panel-default">
   <div>
     <p>@<%= @user.username %></p>
     <p>@<%= tweet.message %></p>
   </div>
+    </div>
+
+  </div>
 <% end %>
+
+  </div>
+  </div>

@@ -14,23 +14,24 @@
 <div class="container">
 <div class="row">
   <div class="col-md-8">
-    <div class="panel panel-default">
-  <div class="field">
+
+  <div class="form-group">
     <%= form.label :message %>
-    <%= form.text_area :message %>
+    <%= form.text_area :message, class: "form-control"%>
   </div>
 
   <div class="field">
     <%= form.hidden_field :user_id, value: current_user.id %>
 
   </div>
-    </div>
+  </div>
   </div>
   <div class="col-md-4"></div>
-</div>
-</div>
+
+
 
   <div class="actions">
     <%= form.submit "Tweeter It!", class: "btn btn-primary" %>
   </div>
+    </div>
 <% end %>

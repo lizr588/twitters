@@ -7,11 +7,11 @@
   <div>
     <% @tag.tweeters.order(created_at: :desc).each do |tweet| %>
     <p>
-      <%= tweeter.user.name %> <%= "@#{tweet.user.username}" %>
-        <%= time_ago_in_words(tweeter.created_at) %>
+      <%= tweet.user.name %> <%= "@#{tweet.user.username}" %>
+        <%= time_ago_in_words(tweet.created_at) %>
     </p>
     <p>
-      <%= tweeter.message.html_safe %>
+      <%= tweet.message.html_safe %>
     </p>
   <% end %>
   </div>
